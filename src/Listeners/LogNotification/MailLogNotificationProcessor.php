@@ -18,7 +18,7 @@ class MailLogNotificationProcessor implements LogNotificationProcessorContract
             'reference' => $event->notification->id,
             'serviceCommunications' => json_encode($event->response) ?: '',
             'message' => '',
-            'recipient' => is_array($notifiable) ? (string)json_encode($notifiable) : (string)$notifiable,
+            'recipient' => is_array($notifiable) ? (string)array_keys($notifiable)[0] : (string)$notifiable,
             'sentAt' => CarbonImmutable::now(),
         ];
 
