@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'application-name' => 'app'
+    'application-name' => env('APP_NAME', 'Laravel')
 ];
