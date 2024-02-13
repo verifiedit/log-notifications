@@ -1,3 +1,5 @@
+[![Build](https://github.com/verifiedit/log-notifications/actions/workflows/build.yml/badge.svg)](https://github.com/verifiedit/log-notifications/actions/workflows/build.yml)
+
 ## Installation
 
 ```composer require verifiedit/log-notifications```
