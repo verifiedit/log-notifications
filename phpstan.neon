@@ -1,0 +1,20 @@
+parameters:
+    level: 8
+    paths:
+        - src
+        - tests
+    reportUnmatchedIgnoredErrors: false
+    checkMissingIterableValueType: false
+    tmpDir: .phpstan
+    scanFiles:
+        # Pest handles loading custom helpers only when running tests
+        # @see https://pestphp.com/docs/helpers#usage
+        - tests/Pest.php
+    ignoreErrors:
+            # Pest custom expectations are dynamic and not conducive static analysis
+            # @see https://pestphp.com/docs/expectations#custom-expectations
+            -
+                messages:
+                    - '#^Call to an undefined method Pest\\PendingCalls\\TestCall\|Pest\\Support\\HigherOrderTapProxy\:\:.*\.$#'
+                paths:
+                    - tests/*

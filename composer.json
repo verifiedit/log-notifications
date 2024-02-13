@@ -11,7 +11,9 @@
   },
   "require-dev": {
     "pestphp/pest": "^v2.33.6",
-    "pestphp/pest-plugin-mock": "^v2.0.0"
+    "pestphp/pest-plugin-mock": "^v2.0.0",
+    "phpmd/phpmd": "^2.15",
+    "phpstan/phpstan": "^1.10"
   },
   "license": "MIT",
   "autoload": {
@@ -25,6 +27,12 @@
         "Verifiedit\\LogNotifications\\ServiceProvider"
       ]
     }
+  },
+  "scripts": {
+    "phpmd": "php -d error_reporting=24575 ./vendor/bin/phpmd . ansi phpmd.xml --exclude 'storage/*,vendor/*,.phpstan/*' --suffixes 'php'",
+    "phpmd:github": "php -d error_reporting=24575 ./vendor/bin/phpmd . github phpmd.xml --exclude 'storage/*,vendor/*,.phpstan/*' --suffixes 'php'",
+    "phpstan": "./vendor/bin/phpstan analyse --no-progress --memory-limit 512M",
+    "phpstan:github": "@phpstan --error-format github"
   },
   "config": {
     "allow-plugins": {
