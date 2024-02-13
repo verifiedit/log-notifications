@@ -2,16 +2,18 @@
 
 namespace Verifiedit\LogNotifications\Listeners\LogNotification;
 
-use Illuminate\Notifications\Events\NotificationSent;
-use Verifiedit\LogNotifications\Contracts\LogNotificationProcessorContract;
 use Carbon\CarbonImmutable;
+use Illuminate\Notifications\Events\NotificationSent;
+use Illuminate\Support\Facades\Config;
+use Verifiedit\LogNotifications\Contracts\LogNotificationProcessorContract;
 
 class ClickSendLogNotificationProcessor implements LogNotificationProcessorContract
 {
+
     public function process(NotificationSent $event): array
     {
         $data = [
-            'application' => 'capture',
+            'application' => Config::get('log-notifications.application-name'),
             'channel' => 'click-send',
             'reference' => $event->notification->id,
             'serviceCommunications' => json_encode($event->response) ?: '',
