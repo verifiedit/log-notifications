@@ -1,0 +1,34 @@
+{
+  "name": "verifiedit/log-notifications",
+  "description": "API to log laravel notifications",
+  "type": "project",
+  "require": {
+    "php": ">=8.2",
+    "illuminate/events": "^10.0 || ^11.0",
+    "illuminate/notifications": "^10.0 || ^11.0",
+    "illuminate/support": "^10.0 || ^11.0",
+    "illuminate/contracts": "^10.0 || ^11.0"
+  },
+  "require-dev": {
+    "pestphp/pest": "^v2.33.6",
+    "pestphp/pest-plugin-mock": "^v2.0.0"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Verifiedit\\LogNotifications\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Verifiedit\\LogNotifications\\ServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
