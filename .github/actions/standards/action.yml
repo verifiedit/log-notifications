@@ -1,0 +1,6 @@
+---
+name: Standards
+description: Run PHP Code Sniffer, PHP Mess Detector and PHP Stan (Static Analysis)
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
