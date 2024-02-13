@@ -30,5 +30,14 @@ array{
 }
 ```
 
-application is the name of which application is sending the notification.  
-- this must be configured in your ```log-notifications``` config.
+application: the name of which application is sending the notification.  
+- defaults to your APP_NAME env variable with a fallback to 'Laravel', or this can be set in your ```log-notifications``` config by running ```php artisan vendor:publish --tag=log-notifications```. 
+
+message: the raw content sent to your recipient.
+- For email, this assumes you are using Laravel's MailMessage
+- For sms, this assumes you are using verifiedit/laravel-notification-channel-clicksend
+
+reference: the uuid of the notification.  
+recipient: the ```Notifiable``` the notification was sent to.  
+serviceCommunications: the response from the notification.  
+channel: the notification channel.  
