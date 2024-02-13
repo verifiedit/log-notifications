@@ -2,6 +2,7 @@
 
 namespace Verifiedit\LogNotifications\Listeners\LogNotification;
 
+use Carbon\CarbonImmutable;
 use Verifiedit\LogNotifications\Contracts\LogNotificationProcessorContract;
 use Illuminate\Notifications\Events\NotificationSent;
 
@@ -16,7 +17,7 @@ class MailLogNotificationProcessor implements LogNotificationProcessorContract
             'serviceCommunications' => json_encode($event->response) ?: '',
             'message' => '',
             'recipient' => (string)$event->notifiable->routeNotificationFor('mail'),
-            'sentAt' => now(),
+            'sentAt' => CarbonImmutable::now(),
         ];
 
         if (method_exists($event->notification, 'toMail')) {
