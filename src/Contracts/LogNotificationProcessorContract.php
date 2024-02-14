@@ -8,6 +8,7 @@ interface LogNotificationProcessorContract
 {
     /**
      * @param NotificationSent $event
+     * @param string $recipients
      * @return array{
      *     application: string,
      *     message: string,
@@ -18,5 +19,5 @@ interface LogNotificationProcessorContract
      *     sentAt: string
      * }
      */
-    public function process(NotificationSent $event): array;
+    public function process(NotificationSent $event, string $recipients): array;
 }

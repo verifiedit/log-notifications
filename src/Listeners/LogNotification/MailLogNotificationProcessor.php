@@ -9,16 +9,15 @@ use Verifiedit\LogNotifications\Contracts\LogNotificationProcessorContract;
 
 class MailLogNotificationProcessor implements LogNotificationProcessorContract
 {
-    public function process(NotificationSent $event): array
+    public function process(NotificationSent $event, string $recipients): array
     {
-        $notifiable = $event->notifiable->routeNotificationFor('mail');
         $data = [
             'application' => Config::get('log-notifications.application-name'),
             'channel' => 'mail',
             'reference' => $event->notification->id,
             'serviceCommunications' => json_encode($event->response) ?: '',
             'message' => '',
-            'recipient' => is_array($notifiable) ? (string)array_keys($notifiable)[0] : (string)$notifiable,
+            'recipient' => $recipients,
             'sentAt' => CarbonImmutable::now(),
         ];
 

@@ -10,7 +10,7 @@ use Verifiedit\LogNotifications\Contracts\LogNotificationProcessorContract;
 class ClickSendLogNotificationProcessor implements LogNotificationProcessorContract
 {
 
-    public function process(NotificationSent $event): array
+    public function process(NotificationSent $event, string $recipients): array
     {
         $data = [
             'application' => Config::get('log-notifications.application-name'),
@@ -18,7 +18,7 @@ class ClickSendLogNotificationProcessor implements LogNotificationProcessorContr
             'reference' => $event->notification->id,
             'serviceCommunications' => json_encode($event->response) ?: '',
             'message' => '',
-            'recipient' => (string)$event->notifiable->routeNotificationFor('click-send'),
+            'recipient' => $recipients,
             'sentAt' => CarbonImmutable::now(),
         ];
 
