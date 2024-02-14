@@ -4,6 +4,7 @@ namespace Verifiedit\LogNotifications\Listeners\LogNotification;
 
 use Exception;
 use Illuminate\Notifications\Events\NotificationSent;
+use Illuminate\Support\Facades\Log;
 use Verifiedit\LogNotifications\Contracts\NotificationLogContract;
 
 readonly class LogNotification
@@ -17,6 +18,7 @@ readonly class LogNotification
      */
     public function handle(NotificationSent $event): void
     {
+        Log::info('NOTIFICATION EVENT', [$event]);
         $recipients = $this->formatRecipients($event->notifiable->getRouteNotificationFor($event->channel));
 
         $data = (new LogNotificationProcessorSelector())->select($event->channel)->process($event, $recipients);
