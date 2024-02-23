@@ -17,7 +17,9 @@ readonly class LogNotification
      */
     public function handle(NotificationSent $event): void
     {
-        $recipients = $this->formatRecipients($event->notifiable->routeNotificationFor($event->channel));
+        $channel = $event->channel === 'NotificationChannels\\ClickSend\\ClickSendChannel' ? 'click-send' : $event->channel;
+
+        $recipients = $this->formatRecipients($event->notifiable->routeNotificationFor($channel));
 
         $data = (new LogNotificationProcessorSelector())->select($event->channel)->process($event, $recipients);
 
