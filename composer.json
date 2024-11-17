@@ -14,7 +14,7 @@
     "pestphp/pest": "^v2.33.6",
     "pestphp/pest-plugin-mock": "^v2.0.0",
     "phpmd/phpmd": "^2.15",
-    "phpstan/phpstan": "^1.10"
+    "phpstan/phpstan": "^2.0"
   },
   "license": "MIT",
   "autoload": {
