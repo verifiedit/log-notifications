@@ -27,7 +27,7 @@ array{
     serviceCommunications: string,
     channel: string,
     sentAt: string,
-    subject: string
+    subject: string|null
 }
 ```
   
