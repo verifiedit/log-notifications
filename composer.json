@@ -37,6 +37,7 @@
     "tests": "./vendor/bin/pest --parallel"
   },
   "config": {
+    "process-timeout": 0,
     "allow-plugins": {
       "pestphp/pest-plugin": true
     }
