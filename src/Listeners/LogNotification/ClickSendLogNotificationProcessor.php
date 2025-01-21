@@ -20,6 +20,7 @@ class ClickSendLogNotificationProcessor implements LogNotificationProcessorContr
             'message' => '',
             'recipient' => $recipients,
             'sentAt' => CarbonImmutable::now(),
+            'subject' => null
         ];
 
         if (method_exists($event->notification, 'toClickSend')) {

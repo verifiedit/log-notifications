@@ -16,7 +16,8 @@ interface LogNotificationProcessorContract
      *     recipient: string,
      *     serviceCommunications: string,
      *     channel: string,
-     *     sentAt: string
+     *     sentAt: string,
+     *     subject: string|null
      * }
      */
     public function process(NotificationSent $event, string $recipients): array;

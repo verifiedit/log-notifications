@@ -12,7 +12,8 @@ interface NotificationLogContract
      *    recipient: string,
      *    serviceCommunications: string,
      *    channel: string,
-     *    sentAt: string
+     *    sentAt: string,
+     *    subject: string|null
      * } $data
      * @return array<string, mixed>
      */
