@@ -3,8 +3,6 @@ parameters:
     paths:
         - src
         - tests
-    reportUnmatchedIgnoredErrors: false
-    checkMissingIterableValueType: false
     tmpDir: .phpstan
     scanFiles:
         # Pest handles loading custom helpers only when running tests

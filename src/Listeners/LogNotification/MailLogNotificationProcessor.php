@@ -12,12 +12,15 @@ class MailLogNotificationProcessor implements LogNotificationProcessorContract
 {
     public function process(NotificationSent $event, string $recipients): array
     {
+        /** @var string $application */
+        $application = Config::get('log-notifications.application-name');
         $data = [
-            'application' => Config::get('log-notifications.application-name'),
+            'application' => $application,
             'channel' => 'mail',
             'reference' => $event->notification->id,
             'serviceCommunications' => json_encode($event->response) ?: '',
             'message' => '',
+            'subject' => null,
             'recipient' => $recipients,
             'sentAt' => CarbonImmutable::now(),
         ];

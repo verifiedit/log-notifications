@@ -26,6 +26,9 @@ readonly class LogNotification
         $this->api->store($data);
     }
 
+    /**
+     * @param array<int|string, string>|string $recipients
+     */
     private function formatRecipients(array|string $recipients): string
     {
         if (!is_array($recipients)) {
