@@ -17,11 +17,16 @@ readonly class LogNotification
      */
     public function handle(NotificationSent $event): void
     {
-        $channel = $event->channel === 'NotificationChannels\\ClickSend\\ClickSendChannel' ? 'click-send' : $event->channel;
+        $channel = match ($event->channel) {
+            'mail' => 'mail',
+            'NotificationChannels\\ClickSend\\ClickSendChannel' => 'click-send',
+            'NotificationChannels\\MicrosoftTeams\\MicrosoftTeamsChannel' => 'microsoft-teams',
+            default => throw new Exception("{$event->channel} log notification processor not implemented"),
+        };
 
         $recipients = $this->formatRecipients($event->notifiable->routeNotificationFor($channel));
 
-        $data = (new LogNotificationProcessorSelector())->select($event->channel)->process($event, $recipients);
+        $data = (new LogNotificationProcessorSelector())->select($channel)->process($event, $recipients);
 
         $this->api->store($data);
     }

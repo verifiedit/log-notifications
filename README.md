@@ -1,5 +1,12 @@
 [![Build](https://github.com/verifiedit/log-notifications/actions/workflows/build.yml/badge.svg)](https://github.com/verifiedit/log-notifications/actions/workflows/build.yml)
 
+## Support
+
+This package currently supports the following channels:
+- Mail
+- SMS (using verifiedit/laravel-notification-channel-clicksend)
+- Microsoft Teams (using laravel-notification-channels/microsoft-teams)
+
 ## Installation
 
 ```composer require verifiedit/log-notifications```
@@ -35,6 +42,7 @@ application: the name of which application is sending the notification.
 - defaults to your APP_NAME env variable with a fallback to 'Laravel', or this can be set in your ```log-notifications``` config by running ```php artisan vendor:publish --tag=log-notifications-config```. 
   
 message: the raw content sent to your recipient.
+- For Microsoft Teams, this assumes you are using laravel-notification-channels/microsoft-teams, the content of this notification is the payload stored as encoded json.
 - For email, this assumes you are using Laravel's MailMessage
 - For sms, this assumes you are using verifiedit/laravel-notification-channel-clicksend
   
