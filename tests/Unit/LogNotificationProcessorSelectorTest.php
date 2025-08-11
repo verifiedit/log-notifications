@@ -3,6 +3,7 @@
 use Verifiedit\LogNotifications\Listeners\LogNotification\ClickSendLogNotificationProcessor;
 use Verifiedit\LogNotifications\Listeners\LogNotification\LogNotificationProcessorSelector;
 use Verifiedit\LogNotifications\Listeners\LogNotification\MailLogNotificationProcessor;
+use Verifiedit\LogNotifications\Listeners\LogNotification\MicrosoftTeamsLogNotificationProcessor;
 
 it(
     'returns the correct processor',
@@ -18,7 +19,7 @@ it(
             ),
             'mail' => expect($processor)->toBeInstanceOf(MailLogNotificationProcessor::class),
             'microsoft-teams' => expect($processor)->toBeInstanceOf(
-                Verifiedit\LogNotifications\Listeners\LogNotification\MicrosoftTeamsLogNotificationProcessor::class),
+                MicrosoftTeamsLogNotificationProcessor::class),
             default => throw new Exception("$channel log notification processor not implemented"),
         };
     }
