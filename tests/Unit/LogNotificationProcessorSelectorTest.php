@@ -3,6 +3,7 @@
 use Verifiedit\LogNotifications\Listeners\LogNotification\ClickSendLogNotificationProcessor;
 use Verifiedit\LogNotifications\Listeners\LogNotification\LogNotificationProcessorSelector;
 use Verifiedit\LogNotifications\Listeners\LogNotification\MailLogNotificationProcessor;
+use Verifiedit\LogNotifications\Listeners\LogNotification\MicrosoftTeamsLogNotificationProcessor;
 
 it(
     'returns the correct processor',
@@ -13,14 +14,16 @@ it(
         $selector = new LogNotificationProcessorSelector();
         $processor = $selector->select($channel);
         match ($channel) {
-            'NotificationChannels\\ClickSend\\ClickSendChannel' => expect($processor)->toBeInstanceOf(
+            'click-send' => expect($processor)->toBeInstanceOf(
                 ClickSendLogNotificationProcessor::class
             ),
             'mail' => expect($processor)->toBeInstanceOf(MailLogNotificationProcessor::class),
+            'microsoft-teams' => expect($processor)->toBeInstanceOf(
+                MicrosoftTeamsLogNotificationProcessor::class),
             default => throw new Exception("$channel log notification processor not implemented"),
         };
     }
-)->with(['NotificationChannels\\ClickSend\\ClickSendChannel', 'mail']);
+)->with(['click-send', 'mail', 'microsoft-teams']);
 
 it(
     'should throw exception if notification driver not implemented',

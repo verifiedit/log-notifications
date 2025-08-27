@@ -14,7 +14,8 @@ class LogNotificationProcessorSelector
     {
         return match ($channel) {
             'mail' => new MailLogNotificationProcessor(),
-            'NotificationChannels\\ClickSend\\ClickSendChannel' => new ClickSendLogNotificationProcessor(),
+            'click-send' => new ClickSendLogNotificationProcessor(),
+            'microsoft-teams' => new MicrosoftTeamsLogNotificationProcessor(),
             default => throw new Exception("$channel log notification processor not implemented"),
         };
     }
