@@ -4,7 +4,7 @@ Guidance for Claude Code when working in this repository. This file is self-cont
 
 ## Project
 
-`verifiedit/log-notifications` — a Composer package providing a Laravel Service Provider that listens for Laravel notification events and writes them to a log/audit store. Consumed by Verified's Laravel API repos. **This is a library, not an app — there is no runtime to boot.**
+`verifiedit/log-notifications` — a Composer package providing a Laravel Service Provider that listens for Laravel notification events and writes them to a log/audit store. Consumed by Verified's Laravel API repos. **This is not a standalone Laravel application/runtime — it’s installed into a host app.**
 
 ## Stack
 
@@ -32,13 +32,13 @@ There is no Pint/CS-fixer script — match the surrounding style.
 
 ## Before declaring a task complete
 
-Run, in order: `composer run phpstan`, `composer run tests`. Fix every failure. The CI workflow (`.github/workflows/build.yml`) runs the same checks via `.github/actions/tests` and `.github/actions/standards` — do not bypass git hooks.
+Run, in order: `composer run phpstan`, `composer run tests`. Fix every failure. The CI workflow (`.github/workflows/build.yml`) runs the same checks via `.github/actions/tests` and `.github/actions/standards` — do not bypass these checks.
 
 ## Layout
 
 ```
 src/
-  ServiceProvider.php       # Registers listeners + binds contracts
+  ServiceProvider.php       # Publishes/merges config + registers listeners
   Contracts/                # Interfaces consumed by the listeners
   Listeners/                # Notification event listeners
 tests/
